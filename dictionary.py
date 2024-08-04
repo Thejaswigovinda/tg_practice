@@ -3,7 +3,7 @@ dict  = {'name': 'theja',
          'place':'puttur'}
 
 
-dict['placu'] = 'karnataka'
+dict['place'] = 'karnataka'
 print(dict)
 dict.update({'namu':'govindu'})
 print(dict)
