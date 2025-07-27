@@ -1,0 +1,22 @@
+pipelines:
+  branches:
+    master:  # Runs only when pushing to any feature/* branch
+      - step:
+          name: Merge Feature Branch to Master
+          image: atlassian/default-image:3
+          script:
+            - git config --global user.email "thejaswigovinda@gmail.com"
+            - git config --global user.name "thejaswi_govinda_b_s"
+
+            # Use your actual repo and username
+            - git remote set-url origin https://${BITBUCKET_USERNAME}:${BITBUCKET_APP_PASS}@bitbucket.org/tg_practice/dialy_commit.git
+
+            - git fetch origin
+            - git checkout master
+            - git pull origin master
+
+            # Merge the feature branch into master
+            - git merge $BITBUCKET_BRANCH --no-ff -m "Auto-merged $BITBUCKET_BRANCH into master via pipeline"
+
+            # Push the merged changes
+            - git push origin master
