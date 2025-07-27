@@ -3,7 +3,7 @@ name: Mirror to Bitbucket
 on:
   push:
     branches:
-      - master  # or 'main' if that's your default branch
+      - master  # Change to 'main' if that's your default branch
 
 jobs:
   mirror:
@@ -23,7 +23,7 @@ jobs:
 
     - name: Push to Bitbucket
       run: |
-        git remote add bitbucket https://bitbucket.org/tg_practice/tg_practice.git
+        git remote add bitbucket https://bitbucket.org/tg_practice/dialy_commit.git
         git push bitbucket --mirror
       env:
         BITBUCKET_USERNAME: ${{ secrets.BITBUCKET_USERNAME }}
