@@ -3,7 +3,7 @@ name: Mirror to Bitbucket
 on:
   push:
     branches:
-      - master  # Change if your main branch is called "main"
+      - master  # or 'main' if that's your default branch
 
 jobs:
   mirror:
@@ -15,9 +15,15 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Set up authentication for Bitbucket
+      run: |
+        echo "machine bitbucket.org" > ~/.netrc
+        echo "login $BITBUCKET_USERNAME" >> ~/.netrc
+        echo "password $BITBUCKET_APP_PASS" >> ~/.netrc
+
     - name: Push to Bitbucket
       run: |
-        git remote add bitbucket https://$thejaswi_govinda_b_s:$ATBBr67qVPzJ3G6mHj8QJQAYBqQM5965EE9E@bitbucket.org/tg_practice/tg_practice.git
+        git remote add bitbucket https://bitbucket.org/tg_practice/tg_practice.git
         git push bitbucket --mirror
       env:
         BITBUCKET_USERNAME: ${{ secrets.BITBUCKET_USERNAME }}
