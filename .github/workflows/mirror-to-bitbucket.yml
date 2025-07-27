@@ -1,0 +1,24 @@
+name: Mirror to Bitbucket
+
+on:
+  push:
+    branches:
+      - master  # Change this if your default branch is different
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout GitHub repo
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Push to Bitbucket
+      run: |
+        git remote add bitbucket https://$BITBUCKET_USERNAME:$BITBUCKET_APP_PASS@bitbucket.org/Thejaswi_Govinda_B_S/tg_practice.git
+        git push bitbucket --mirror
+      env:
+        BITBUCKET_USERNAME: ${{ secrets.BITBUCKET_USERNAME }}
+        BITBUCKET_APP_PASS: ${{ secrets.BITBUCKET_APP_PASS }}
