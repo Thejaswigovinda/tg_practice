@@ -15,15 +15,9 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Set up authentication for Bitbucket
-      run: |
-        echo "machine bitbucket.org" > ~/.netrc
-        echo "login $BITBUCKET_USERNAME" >> ~/.netrc
-        echo "password $BITBUCKET_APP_PASS" >> ~/.netrc
-
     - name: Push to Bitbucket
       run: |
-        git remote add bitbucket https://bitbucket.org/tg_practice/dialy_commit.git
+        git remote add bitbucket https://${{ secrets.BITBUCKET_USERNAME }}:${{ secrets.BITBUCKET_APP_PASS }}@bitbucket.org/tg_practice/dialy_commit.git
         git push bitbucket --mirror
       env:
         BITBUCKET_USERNAME: ${{ secrets.BITBUCKET_USERNAME }}
