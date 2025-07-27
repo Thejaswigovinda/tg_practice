@@ -6,5 +6,5 @@ def swap_tuple(new_tuple, index1, index2):
 tuples = (1,2,3,4,5)
 index1 = 2
 index2 = 3
-print(index2)
+print("index2")
 swap_tuple(tuples, index1, index2)
