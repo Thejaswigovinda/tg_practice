@@ -17,7 +17,7 @@ jobs:
 
     - name: Push to Bitbucket
       run: |
-        git remote add bitbucket https://$BITBUCKET_USERNAME:$BITBUCKET_APP_PASS@bitbucket.org/thejaswi_govinda_b_s/tg_practice.git
+        git remote add bitbucket https://$BITBUCKET_USERNAME:$BITBUCKET_APP_PASS@bitbucket.org/thejaswi_govinda_b_s/tg_practice/tg_practice.git
         git push bitbucket --mirror
       env:
         BITBUCKET_USERNAME: ${{ secrets.BITBUCKET_USERNAME }}
